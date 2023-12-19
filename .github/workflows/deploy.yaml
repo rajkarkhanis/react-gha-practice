@@ -37,5 +37,18 @@ jobs:
           name: dist
           path: dist
 
-      - name: Notify deploying
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+
+      - name: List file contents
+        run: ls
+
+      - name: Simulate deployment
         run: echo "Deploying..."
+
